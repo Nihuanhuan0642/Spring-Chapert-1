@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="lgDisplay" class="com.ni.test.LgDispaly"/>
+    <bean id="samSungDisplay" class="com.ni.test.SamSungDisplay"/>
+    <bean id="miainFrame" class="com.ni.test.MainFrame">
+        <property name="modeType" value="哈哈哈"/>
+    </bean>
+    <bean id="computer" class="com.ni.test.Computer">
+        <property name="display" ref="lgDisplay"/>
+        <property name="mainFrame" ref="miainFrame"/>
+    </bean>
+
+    <!--Start exercise1-->
+    <bean class="com.ni.exercise1.SamSungHardDisk" id="samSungHardDisk"/>
+    <bean class="com.ni.exercise1.SeaGateHardDisk" id="seaGateHardDisk"/>
+    <!--End exercise1-->
+
+    <!--Start exercise2-->
+    <bean id="colorInk" class="com.ni.exercise2.ColorInk"/>
+    <bean id="grayInk" class="com.ni.exercise2.GrayInk"/>
+    <bean id="a3Paper" class="com.ni.exercise2.A3Paper"/>
+    <bean id="a4Paper" class="com.ni.exercise2.A4Paper"/>
+    <!--
+     任务3
+     <bean id="printer" class="com.ni.exercise2.Printer">
+           <constructor-arg ref="a4Paper" index="0"/>
+           <constructor-arg ref="colorInk" index="1"/>
+       </bean>-->
+    <!--End exercise2-->
+
+    <!--Start exercise3-->
+   <bean id="power" class="com.ni.exercise3.Power">
+        <property name="type">
+            <value>长城</value>
+        </property>
+    </bean>
+    <bean id="printer" class="com.ni.exercise3.Printer" autowire="byName">
+        <property name="paper" ref="a4Paper"></property>
+        <property name="ink" ref="grayInk"></property>
+        <property name="power" ref="power"></property>
+    </bean>
+    <!--End exercise3-->
+    <!--Start exercise4-->
+    <bean id="emp0" class="com.ni.exercise4.EmpVo">
+        <property name="name" value="张三"/>
+        <property name="adress" value="河南"/>
+    </bean>
+    <bean id="emp1" class="com.ni.exercise4.EmpVo">
+        <property name="name" value="张三"/>
+        <property name="adress" value="河南"/>
+    </bean>
+
+    <bean class="com.ni.exercise4.DeptVo" id="deptVo">
+        <property name="deptName" value="销售部"/>
+        <property name="emps">
+            <list>
+                <ref bean="emp0"/>
+                <ref bean="emp1"/>
+            </list>
+        </property>
+    </bean>
+    <!--End exercise4-->
+</beans>
